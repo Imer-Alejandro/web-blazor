@@ -1,0 +1,62 @@
+﻿@page "/weather"
+
+<PageTitle>Calculadora</PageTitle>
+
+<div style="text-align: center; padding: 20px;">
+    <h1>🔢 Calculadora Básica</h1>
+
+    <div>
+        <label for="number1">Número 1:</label>
+        <input type="number" id="number1" placeholder="Ingresa un número" />
+    </div>
+
+    <div style="margin-top: 10px;">
+        <label for="number2">Número 2:</label>
+        <input type="number" id="number2" placeholder="Ingresa otro número" />
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button onclick="performOperation('sumar')">➕ Sumar</button>
+        <button onclick="performOperation('restar')">➖ Restar</button>
+        <button onclick="performOperation('multiplicar')">✖️ Multiplicar</button>
+        <button onclick="performOperation('dividir')">➗ Dividir</button>
+    </div>
+
+    <h3 style="margin-top: 20px;">Resultado: <span id="result">0</span></h3>
+</div>
+
+<script>
+    function performOperation(operation) {
+        const number1 = parseFloat(document.getElementById('number1').value);
+        const number2 = parseFloat(document.getElementById('number2').value);
+        let result = 0;
+
+        if (isNaN(number1) || isNaN(number2)) {
+            alert("Por favor, ingresa dos números válidos.");
+            return;
+        }
+
+        switch (operation) {
+            case 'sumar':
+                result = number1 + number2;
+                break;
+            case 'restar':
+                result = number1 - number2;
+                break;
+            case 'multiplicar':
+                result = number1 * number2;
+                break;
+            case 'dividir':
+                if (number2 === 0) {
+                    alert("No se puede dividir entre 0.");
+                    return;
+                }
+                result = number1 / number2;
+                break;
+            default:
+                break;
+        }
+
+        document.getElementById('result').innerText = result;
+    }
+</script>

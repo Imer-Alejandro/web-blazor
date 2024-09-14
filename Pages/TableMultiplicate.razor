@@ -1,0 +1,39 @@
+﻿@page "/multiplicar"
+<PageTitle>TableMultiplicate</PageTitle>
+
+<div style="text-align: center; padding: 20px;">
+    <h1>🧮 Generador de Tablas de Multiplicar</h1>
+
+    <div>
+        <label for="number">Ingresa un número:</label>
+        <input type="number" id="number" placeholder="Número" />
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button onclick="generarTabla()">🔄 Mostrar Tabla de Multiplicar</button>
+    </div>
+
+    <h3 style="margin-top: 20px;">Tabla de multiplicar:</h3>
+    <div id="tabla" style="font-size: 1.2em; margin-top: 10px;"></div>
+</div>
+
+<script>
+    function generarTabla() {
+        const numero = parseInt(document.getElementById('number').value);
+        const tablaDiv = document.getElementById('tabla');
+        tablaDiv.innerHTML = ''; // Limpiar contenido anterior
+
+        if (isNaN(numero)) {
+            alert("Por favor, ingresa un número válido.");
+            return;
+        }
+
+        for (let i = 0; i <= 15; i++) {
+            const resultado = i * numero;
+            const linea = `${i} x ${numero} = ${resultado}`;
+            const p = document.createElement('p');
+            p.textContent = linea;
+            tablaDiv.appendChild(p);
+        }
+    }
+</script>
